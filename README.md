@@ -1,6 +1,6 @@
 # famd
-Faux AMD Library. Inspired by the AMD architecture. Extends the native Navigator object. This library is dependent on 
-jQuery library and the RunWhen function.
+Faux AMD Library. Inspired by the AMD architecture. Extends the native [Navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) object. This library is dependent on 
+jQuery library and the [RunWhen](https://github.com/rafaelgandi/RunWhen) function.
 
 ## Methods exposed using the Navigator object.
 	* *navigator.famd* - FAMD object. Contains utility methods
@@ -98,3 +98,11 @@ navigator.define('Mod.mod4', [
 	alert(navigator.mod('Mod.mod3').foo());
 });
 ```
+
+### navigator.mod
+	Method used to get the methods/properties of a module. Takes the module name/id as its only parameter. 
+	This is also internally used by RunWhen to check for the availablity of the module.
+
+```JavaScript
+navigator.mod('Mod.mod3').foo(); // Calling the method foo() from module "Mod.mod3"
+```	
