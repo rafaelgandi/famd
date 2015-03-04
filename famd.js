@@ -52,7 +52,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 	Navigator.prototype.define = function (_moduleName, _dependencies, _callback) {
 		var req = [];
 		_callback = _callback || function () {};
-		if (_dependencies instanceof Function) { // When no dependencies are given, then  run right away
+		if (_dependencies instanceof Function) {
 			_callback = _dependencies;
 			_dependencies = undefined;
 		}
@@ -80,6 +80,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 			});
 		}
 		else {
+			// When no dependencies are given, then run the callback right away after the dom is ready
 			$(function () {
 				var run = _callback.call(self, $);
 				__modules[_moduleName] = (run instanceof Object) ? run : {};
