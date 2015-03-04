@@ -10,11 +10,11 @@ jQuery library and the [RunWhen](https://github.com/rafaelgandi/RunWhen) functio
 	
 ### navigator.require
 	
-	<p>This method takes 2 parameters the second being optional. The first parameter is the complete path to the javascript
-	file to load. The second optional parameter is the callback to call when the script file is loaded.</p> 
+	<div>This method takes 2 parameters the second being optional. The first parameter is the complete path to the javascript
+	file to load. The second optional parameter is the callback to call when the script file is loaded.</div> 
 	
-	<p>This is usually called above any famd module definition. This loads a script only once. Same concept as the php function 
-	"require_once". Internally uses jQuery's getScript() method.</p> 
+	This is usually called above any famd module definition. This loads a script only once. Same concept as the php function 
+	"require_once". Internally uses jQuery's getScript() method.
 	
 ```JavaScript
 navigator.require('Mod.mod1.js');
