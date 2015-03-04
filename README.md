@@ -3,7 +3,7 @@ Faux AMD Library. Inspired by the AMD architecture. Extends the native Navigator
 jQuery library and the RunWhen function.
 
 ## Methods exposed using the Navigator object.
-	* navigator.famd - FAMD object. Contains utility methods
+	* *navigator.famd* - FAMD object. Contains utility methods
 	* navigator.require - Used to spacify/load a dependency js file
 	* navigator.define - Used to define a famd module
 	* navigator.mod - Used to access the methods/properties of a famd module
@@ -27,3 +27,53 @@ navigator.require('js/jquery.blockUI.pak.js');
 	except the "@" character. The second is an array of module names/id that the module is dependent to. If the module does not have any 
 	dependencies then we can automatically make the second parameter as the callback. The third parameter is the callback function that will 
 	return the module object.
+
+```JavaScript
+navigator.require('Mod.mod1.js');
+navigator.require('Mod.mod2.js');
+navigator.require('js/highlightFade.min.js');
+
+navigator.define('Mod.mod3', [
+	'Mod.mod1', 
+	'Mod.mod2',
+	'@$.fn.highlightFade'	
+], function ($, undefined) {
+	alert(typeof $.fn.highlightFade);	
+	alert(navigator.mod('Mod.mod1').foo());	
+	var mod3 = {
+		foo: function () {
+			return 'hello from mod 3';
+		},
+		mod2: function () {
+			return navigator.mod('Mod.mod2').foo();
+		}
+	};	
+	alert(mod3.mod2());
+	alert($);
+	return mod3;
+});
+```
+
+```JavaScript
+navigator.require('Mod.mod1.js');
+navigator.define('Mod.mod2', 'Mod.mod1', function ($, undefined) {
+
+	var Events = {};	
+	
+	return {
+		foo: function () {
+			return 'hello from mod 2';
+		}
+	};
+});
+```
+
+```JavaScript
+navigator.define('Mod.mod1', function () {
+	return {
+		foo: function () {
+			return 'hello from mod 1';
+		}
+	};
+});
+```
