@@ -9,11 +9,12 @@ jQuery library and the [RunWhen](https://github.com/rafaelgandi/RunWhen) functio
 	* navigator.mod - Used to access the methods/properties of a famd module
 	
 ### navigator.require
-	This method takes 2 parameters the second being optional. The first parameter is the complete path to the javascript
-	file to load. The second optional parameter is the callback to call when the script file is loaded. 
 	
-	This is usually called above any famd module definition. This loads a script only once. Same concept as the php function 
-	"require_once". Internally uses jQuery's getScript() method.
+	<p>This method takes 2 parameters the second being optional. The first parameter is the complete path to the javascript
+	file to load. The second optional parameter is the callback to call when the script file is loaded.</p> 
+	
+	<p>This is usually called above any famd module definition. This loads a script only once. Same concept as the php function 
+	"require_once". Internally uses jQuery's getScript() method.</p> 
 	
 ```JavaScript
 navigator.require('Mod.mod1.js');
