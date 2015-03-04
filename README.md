@@ -3,7 +3,7 @@ Faux AMD Library. Inspired by the AMD architecture. Extends the native [Navigato
 jQuery library and the [RunWhen](https://github.com/rafaelgandi/RunWhen) function.
 
 ## Methods exposed using the Navigator object.
-	* *navigator.famd* - FAMD object. Contains utility methods
+	* **navigator.famd** - FAMD object. Contains utility methods
 	* navigator.require - Used to spacify/load a dependency js file
 	* navigator.define - Used to define a famd module
 	* navigator.mod - Used to access the methods/properties of a famd module
