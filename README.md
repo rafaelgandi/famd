@@ -3,7 +3,7 @@ Faux AMD Library. Inspired by the AMD architecture. Extends the native [Navigato
 jQuery library and the [RunWhen](https://github.com/rafaelgandi/RunWhen) function.
 
 ## Methods exposed using the Navigator object.
-	* **navigator.famd** - FAMD object. Contains utility methods
+	* navigator.famd - FAMD object. Contains utility methods
 	* navigator.require - Used to spacify/load a dependency js file
 	* navigator.define - Used to define a famd module
 	* navigator.mod - Used to access the methods/properties of a famd module
@@ -24,7 +24,7 @@ navigator.require('js/jquery.blockUI.pak.js');
 ```
 ### navigator.define
 	Defines/creates an famd module. This method takes in 3 parameters. The first is the name/id of the module which could be any string 
-	except the "@" character. The second is an array of module names/id that the module is dependent to. If the module does not have any 
+	except the **"@"** character. The second is an array of module names/id that the module is dependent to. If the module does not have any 
 	dependencies then we can automatically make the second parameter as the callback. The third parameter is the callback function that will 
 	return the module object.
 
