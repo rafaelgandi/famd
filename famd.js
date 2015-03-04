@@ -51,6 +51,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 	
 	Navigator.prototype.define = function (_moduleName, _dependencies, _callback) {
 		var req = [];
+		_moduleName = _moduleName.replace('@', '');
 		_callback = _callback || function () {};
 		if (_dependencies instanceof Function) {
 			_callback = _dependencies;
