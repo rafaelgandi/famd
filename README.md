@@ -14,6 +14,7 @@ jQuery library and the [RunWhen](https://github.com/rafaelgandi/RunWhen) functio
 	
 	This is usually called above any famd module definition. This loads a script only once. Same concept as the php function 
 	"require_once". Internally uses jQuery's getScript() method.	
+	
 ```JavaScript
 navigator.require('Mod.mod1.js');
 navigator.require('Mod.mod2.js');
@@ -26,6 +27,7 @@ navigator.require('js/jquery.blockUI.pak.js');
 	except the "@" character. The second is an array of module names/id that the module is dependent to. If the module does not have any 
 	dependencies then we can automatically make the second parameter as the callback. The third parameter is the callback function that will 
 	return the module object.
+	
 #### Normal defining of a module	
 ```JavaScript
 navigator.require('Mod.mod1.js');
@@ -104,3 +106,5 @@ navigator.define('Mod.mod4', [
 ```JavaScript
 navigator.mod('Mod.mod3').foo(); // Calling the method foo() from module "Mod.mod3"
 ```	
+
+## :squirrel: Enjoy!
