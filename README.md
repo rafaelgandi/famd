@@ -1,4 +1,4 @@
-# famd
+# famd :alien: :metal:
 Faux AMD Library. Inspired by the AMD architecture. Extends the native [Navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) object. This library is dependent on 
 jQuery library and the [RunWhen](https://github.com/rafaelgandi/RunWhen) function.
 
@@ -24,7 +24,7 @@ navigator.require('js/jquery.blockUI.pak.js');
 ```
 ### navigator.define
 	Defines/creates an famd module. This method takes in 3 parameters. The first is the name/id of the module which could be any string 
-	except the **"@"** character. The second is an array of module names/id that the module is dependent to. If the module does not have any 
+	except the "@" character. The second is an array of module names/id that the module is dependent to. If the module does not have any 
 	dependencies then we can automatically make the second parameter as the callback. The third parameter is the callback function that will 
 	return the module object.
 
