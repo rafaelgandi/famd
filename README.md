@@ -28,11 +28,11 @@ navigator.require('js/jquery.blockUI.pak.js');
 	dependencies then we can automatically make the second parameter as the callback. The third parameter is the callback function that will 
 	return the module object.
 
+#### Normal defining of a module	
 ```JavaScript
 navigator.require('Mod.mod1.js');
 navigator.require('Mod.mod2.js');
 navigator.require('js/highlightFade.min.js');
-
 navigator.define('Mod.mod3', [
 	'Mod.mod1', 
 	'Mod.mod2',
@@ -54,6 +54,7 @@ navigator.define('Mod.mod3', [
 });
 ```
 
+#### Defining a module with one dependency. 2nd parameter can be a string
 ```JavaScript
 navigator.require('Mod.mod1.js');
 navigator.define('Mod.mod2', 'Mod.mod1', function ($, undefined) {
@@ -68,6 +69,7 @@ navigator.define('Mod.mod2', 'Mod.mod1', function ($, undefined) {
 });
 ```
 
+#### Defining a module without dependencies
 ```JavaScript
 navigator.define('Mod.mod1', function () {
 	return {
@@ -75,5 +77,24 @@ navigator.define('Mod.mod1', function () {
 			return 'hello from mod 1';
 		}
 	};
+});
+```
+
+#### Defining a module that does not return anything
+```JavaScript
+navigator.require('Mod.mod1.js');
+navigator.require('Mod.mod2.js');
+navigator.require('Mod.mod3.js');
+navigator.require('js/highlightFade.min.js');
+navigator.require('js/jquery.blockUI.pak.js');
+navigator.define('Mod.mod4', [
+	'Mod.mod1', 
+	'Mod.mod2',
+	'@jQuery.fn.highlightFade',
+	'Mod.mod3',
+	'@jQuery.fn.block'	
+], function ($, undefined) {
+	alert(typeof $.fn.block);	
+	alert(navigator.mod('Mod.mod3').foo());
 });
 ```
