@@ -1,7 +1,8 @@
 /* 
 	Faux AMD Library
 		- Inspired by the AMD architecture. Extends the native Navigator object.
-	LM: 03-04-2015
+		- https://github.com/rafaelgandi/famd
+	LM: 03-05-2015
 	Author: Rafael Gandionco [www.rafaelgandi.tk]
  */
 // Array.prototype.forEach() shiv //
@@ -19,7 +20,13 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 	var __modules = {},
 		__loadedScripts = [],
 		t = $.trim;
-	
+	// Make sure that the methods we are about to inject to the native Navigator object is not aready defined. //	
+	if (navigator.require !== undefined || 
+		navigator.define !== undefined || 
+		navigator.mod !== undefined) {
+		throw 'One or more of the famd methods are already defined in the Navigator object';
+		return;
+	}		
 	// Get all the src of all the currently loaded scripts on dom ready // 	
 	$(function () {
 		var $scripts = $('script');
