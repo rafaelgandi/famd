@@ -6,4 +6,4 @@ navigator.define('Mod.mod1', function () {
 			return 'hello from mod 1';
 		}
 	};
-});
+}); 

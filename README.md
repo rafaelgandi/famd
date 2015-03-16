@@ -22,6 +22,17 @@ navigator.require('Mod.mod3.js');
 navigator.require('js/highlightFade.min.js');
 navigator.require('js/jquery.blockUI.pak.js');
 ```
+#### navigator.require can also be chained.
+
+```JavaScript
+navigator
+.require('Mod.mod1.js')
+.require('Mod.mod2.js')
+.require('Mod.mod3.js')
+.require('js/highlightFade.min.js')
+.require('js/jquery.blockUI.pak.js');
+```
+
 ### navigator.define
 	Defines/creates an famd module. This method takes in 3 parameters. The first is the name/id of the module which could be any string 
 	except the "@" character. The second is an array of module names/id that the module is dependent to. If the module does not have any 
