@@ -7,7 +7,7 @@ setTimeout(function () { // Delay
 }, 1000);
 
 
-navigator.define('Mod.mod3', [
+! navigator.mod('Mod.mod3') && navigator.define('Mod.mod3', [
 	'Mod.mod1', 
 	'Mod.mod2',
 	'@$.fn.highlightFade'	

@@ -2,7 +2,7 @@
 	Faux AMD Library
 		- Inspired by the AMD architecture. Extends the native Navigator object.
 		- https://github.com/rafaelgandi/famd
-	LM: 03-16-2015
+	LM: 05-04-2015
 	Author: Rafael Gandionco [www.rafaelgandi.tk]
  */
 // Array.prototype.forEach() shiv //
@@ -19,14 +19,22 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 (function ($, self, undefined) {	
 	var __modules = {},
 		__loadedScripts = [],
-		t = $.trim;
+		t = $.trim,
+		NON_MODULE_INDICATOR = '@';
 	// Make sure that the methods we are about to inject to the native Navigator object is not aready defined. //	
 	if (navigator.require !== undefined || 
 		navigator.define !== undefined || 
 		navigator.mod !== undefined) {
 		throw 'One or more of the famd methods are already defined in the Navigator object';
 		return;
-	}		
+	}	
+	
+	function __warn(_msg) {
+		if (!! console) {
+			console.warn(_msg);
+		}
+	}	
+	
 	// Get all the src of all the currently loaded scripts on dom ready // 	
 	$(function () {
 		var $scripts = $('script');
@@ -38,8 +46,14 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 	});
 
 	Navigator.prototype.famd = {
-		getLoadedScripts: function () {
+		getLoadedScripts: function () { // Get list of js paths that have already been loaded
 			return __loadedScripts;
+		},
+		addPathAsLoaded: function (_src) { // Add a path to the internal array
+			__loadedScripts.push(_src);
+		},
+		isPathLoaded: function (_src) { // Check if a certain path has already been loaded
+			return ($.inArray(_src, __loadedScripts) > -1);
 		}
 	};	
 	
@@ -59,7 +73,11 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 	
 	Navigator.prototype.define = function (_moduleName, _dependencies, _callback) {
 		var req = [];
-		_moduleName = _moduleName.replace('@', '');
+		_moduleName = _moduleName.replace(NON_MODULE_INDICATOR, '');
+		if (t(_moduleName) in __modules) { // Check if the module has already been defined and included in the page.
+			__warn('Module with name "'+_moduleName+'" has already been defined and included');
+			return;
+		}
 		_callback = _callback || function () {};
 		if (_dependencies instanceof Function) {
 			_callback = _dependencies;
@@ -70,12 +88,12 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 		}	
 		if (_dependencies instanceof Array) {
 			_dependencies.forEach(function (mod) {
-				if (mod.indexOf('@') !== -1) {
+				if (mod.indexOf(NON_MODULE_INDICATOR) !== -1) {
 					// If one of the dependency is not a famd module then
 					// load it directly. This is usually for 3rd party 
 					// plugins or libraries. Just prefix an "@" symbol on 
 					// the check string.
-					req.push(t(mod.replace('@', '')));
+					req.push(t(mod.replace(NON_MODULE_INDICATOR, '')));
 				}
 				else {
 					req.push('navigator.mod("'+t(mod)+'")');
