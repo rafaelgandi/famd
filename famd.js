@@ -2,7 +2,7 @@
 	Faux AMD Library
 		- Inspired by the AMD architecture. Extends the native Navigator object.
 		- https://github.com/rafaelgandi/famd
-	LM: 05-04-2015
+	LM: 05-07-2015
 	Author: Rafael Gandionco [www.rafaelgandi.tk]
  */
 // Array.prototype.forEach() shiv //
@@ -20,7 +20,8 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 	var __modules = {},
 		__loadedScripts = [],
 		t = $.trim,
-		NON_MODULE_INDICATOR = '@';
+		NON_MODULE_INDICATOR = '@',
+		$root = {};
 	// Make sure that the methods we are about to inject to the native Navigator object is not aready defined. //	
 	if (navigator.require !== undefined || 
 		navigator.define !== undefined || 
@@ -43,6 +44,8 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 				__loadedScripts.push(t($(this).attr('src')));
 			});			
 		}
+		
+		$root = $(document);
 	});
 
 	Navigator.prototype.famd = {
@@ -74,7 +77,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 	Navigator.prototype.define = function (_moduleName, _dependencies, _callback) {
 		var req = [];
 		_moduleName = _moduleName.replace(NON_MODULE_INDICATOR, '');
-		if (t(_moduleName) in __modules) { // Check if the module has already been defined and included in the page.
+		if (t(_moduleName) in __modules) { // Check if the module has already been defined and included in the page.		
 			__warn('Module with name "'+_moduleName+'" has already been defined and included');
 			return;
 		}
@@ -85,7 +88,10 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 		}
 		else if (_dependencies instanceof String) {
 			_dependencies = [_dependencies]; // Force array
-		}	
+		}			
+		// Register the module name right away to avoid duplicate 
+		// running of module.
+		__modules[_moduleName] = {};		
 		if (_dependencies instanceof Array) {
 			_dependencies.forEach(function (mod) {
 				if (mod.indexOf(NON_MODULE_INDICATOR) !== -1) {
@@ -103,6 +109,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 				$(function () {
 					var run = _callback.call(self, $); // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
 					__modules[_moduleName] = (run instanceof Object) ? run : {};
+					$root.trigger(_moduleName);
 				});
 			});
 		}
@@ -111,6 +118,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 			$(function () {
 				var run = _callback.call(self, $);
 				__modules[_moduleName] = (run instanceof Object) ? run : {};
+				$root.trigger(_moduleName);
 			});
 		}
 	};
