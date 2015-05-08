@@ -2,7 +2,7 @@
 	Faux AMD Library
 		- Inspired by the AMD architecture. Extends the native Navigator object.
 		- https://github.com/rafaelgandi/famd
-	LM: 05-07-2015
+	LM: 05-08-2015
 	Author: Rafael Gandionco [www.rafaelgandi.tk]
  */
 // Array.prototype.forEach() shiv //
@@ -34,17 +34,25 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 		if (!! console) {
 			console.warn(_msg);
 		}
-	}	
+	}
 	
-	// Get all the src of all the currently loaded scripts on dom ready // 	
-	$(function () {
-		var $scripts = $('script');
+	function __collectLoadedScripts() {
+		var $scripts = $('script').not('[data-famd-checked]'),
+			queryStringRegExp = /\?.*$/;
 		if ($scripts.length) {
 			$scripts.each(function () {
-				__loadedScripts.push(t($(this).attr('src')));
-			});			
+				var $me = $(this),
+					src = t($me.attr('src')).replace(queryStringRegExp, '');
+				__loadedScripts.push(src);
+				$me.attr('data-famd-checked', true);
+			});	
 		}
-		
+	}
+	
+	// Get all the src of all the currently loaded scripts before and on dom ready //
+ 	__collectLoadedScripts();
+	$(function () {		
+		__collectLoadedScripts();
 		$root = $(document);
 	});
 
