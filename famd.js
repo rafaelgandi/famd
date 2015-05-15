@@ -2,7 +2,7 @@
 	Faux AMD Library
 		- Inspired by the AMD architecture. Extends the native Navigator object.
 		- https://github.com/rafaelgandi/famd
-	LM: 05-08-2015
+	LM: 05-15-2015
 	Author: Rafael Gandionco [www.rafaelgandi.tk]
  */
 // Array.prototype.forEach() shiv //
@@ -98,8 +98,8 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 			_dependencies = [_dependencies]; // Force array
 		}			
 		// Register the module name right away to avoid duplicate 
-		// running of module.
-		__modules[_moduleName] = {};		
+		// running of module. But give it an undefined value.
+		__modules[_moduleName];		
 		if (_dependencies instanceof Array) {
 			_dependencies.forEach(function (mod) {
 				if (mod.indexOf(NON_MODULE_INDICATOR) !== -1) {
