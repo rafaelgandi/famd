@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Famd by rafaelgandi</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Famd</h1>
+          <h2>Faux AMD Library. Inspired by the AMD architecture. Extends the native Navigator object.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/rafaelgandi/famd/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/rafaelgandi/famd/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/rafaelgandi/famd" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="famd-alien-metal" class="anchor" href="#famd-alien-metal" aria-hidden="true"><span class="octicon octicon-link"></span></a>famd <img class="emoji" title=":alien:" alt=":alien:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f47d.png" height="20" width="20" align="absmiddle"> <img class="emoji" title=":metal:" alt=":metal:" src="https://assets-cdn.github.com/images/icons/emoji/metal.png" height="20" width="20" align="absmiddle">
+</h1>
+
+<p>Faux AMD Library. Inspired by the AMD architecture. Extends the native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator">Navigator</a> object. This library is dependent on 
+jQuery library and the <a href="https://github.com/rafaelgandi/RunWhen">RunWhen</a> function.</p>
+
+<h2>
+<a id="methods-exposed-using-the-navigator-object" class="anchor" href="#methods-exposed-using-the-navigator-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods exposed using the Navigator object.</h2>
+
+<pre><code>* navigator.famd - FAMD object. Contains utility methods [getLoadedScripts(), addPathAsLoaded(src), isPathLoaded(src)]
+* navigator.require - Used to specify/load a dependency js file
+* navigator.define - Used to define a famd module
+* navigator.mod - Used to access the methods/properties of a famd module
+</code></pre>
+
+<h3>
+<a id="navigatorrequire" class="anchor" href="#navigatorrequire" aria-hidden="true"><span class="octicon octicon-link"></span></a>navigator.require</h3>
+
+<pre><code>This method takes 2 parameters the second being optional. The first parameter is the complete path to the javascript
+file to load. The second optional parameter is the callback to call when the script file is loaded.
+
+This is usually called above any famd module definition. This loads a script only once. Same concept as the php function 
+"require_once". Internally uses jQuery's getScript() method.    
+</code></pre>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);</pre></div>
+
+<h4>
+<a id="navigatorrequire-can-also-be-chained" class="anchor" href="#navigatorrequire-can-also-be-chained" aria-hidden="true"><span class="octicon octicon-link"></span></a>navigator.require can also be chained.</h4>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>
+.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>)
+.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>)
+.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>)
+.require(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>)
+.require(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);</pre></div>
+
+<h3>
+<a id="navigatordefine" class="anchor" href="#navigatordefine" aria-hidden="true"><span class="octicon octicon-link"></span></a>navigator.define</h3>
+
+<pre><code>Defines/creates an famd module. This method takes in 3 parameters. The first is the name/id of the module which could be any string 
+except the "@" character. The second is an array of module names/id that the module is dependent to. If the module does not have any 
+dependencies then we can automatically make the second parameter as the callback. The third parameter is the callback function that will 
+return the module object.
+</code></pre>
+
+<h4>
+<a id="normal-defining-of-a-module" class="anchor" href="#normal-defining-of-a-module" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normal defining of a module</h4>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.define(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>, [
+    <span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, 
+    <span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>@$.fn.highlightFade<span class="pl-pds">'</span></span>   
+], <span class="pl-k">function</span> (<span class="pl-smi">$</span>, <span class="pl-smi">undefined</span>) {
+    <span class="pl-c1">alert</span>(<span class="pl-k">typeof</span> $.fn.highlightFade);   
+    <span class="pl-c1">alert</span>(<span class="pl-c1">navigator</span>.mod(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>).foo()); 
+    <span class="pl-k">var</span> mod3 <span class="pl-k">=</span> {
+        <span class="pl-en">foo</span>: <span class="pl-k">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>hello from mod 3<span class="pl-pds">'</span></span>;
+        },
+        <span class="pl-en">mod2</span>: <span class="pl-k">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-c1">navigator</span>.mod(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>).foo();
+        }
+    };  
+    <span class="pl-c1">alert</span>(mod3.mod2());
+    <span class="pl-c1">alert</span>($);
+    <span class="pl-k">return</span> mod3;
+});</pre></div>
+
+<h4>
+<a id="defining-a-module-with-one-dependency-2nd-parameter-can-be-a-string" class="anchor" href="#defining-a-module-with-one-dependency-2nd-parameter-can-be-a-string" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining a module with one dependency. 2nd parameter can be a string</h4>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.define(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">$</span>, <span class="pl-smi">undefined</span>) {
+
+    <span class="pl-k">var</span> Events <span class="pl-k">=</span> {};    
+
+    <span class="pl-k">return</span> {
+        <span class="pl-en">foo</span>: <span class="pl-k">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>hello from mod 2<span class="pl-pds">'</span></span>;
+        }
+    };
+});</pre></div>
+
+<h4>
+<a id="defining-a-module-without-dependencies" class="anchor" href="#defining-a-module-without-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining a module without dependencies</h4>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.define(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> () {
+    <span class="pl-k">return</span> {
+        <span class="pl-en">foo</span>: <span class="pl-k">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>hello from mod 1<span class="pl-pds">'</span></span>;
+        }
+    };
+});</pre></div>
+
+<h4>
+<a id="defining-a-module-that-does-not-return-anything" class="anchor" href="#defining-a-module-that-does-not-return-anything" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining a module that does not return anything</h4>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.define(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod4<span class="pl-pds">'</span></span>, [
+    <span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, 
+    <span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>@jQuery.fn.highlightFade<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>,
+    <span class="pl-s"><span class="pl-pds">'</span>@jQuery.fn.block<span class="pl-pds">'</span></span>  
+], <span class="pl-k">function</span> (<span class="pl-smi">$</span>, <span class="pl-smi">undefined</span>) {
+    <span class="pl-c1">alert</span>(<span class="pl-k">typeof</span> $.fn.block);   
+    <span class="pl-c1">alert</span>(<span class="pl-c1">navigator</span>.mod(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>).foo());
+});</pre></div>
+
+<h3>
+<a id="navigatormod" class="anchor" href="#navigatormod" aria-hidden="true"><span class="octicon octicon-link"></span></a>navigator.mod</h3>
+
+<pre><code>Method used to get the methods/properties of a module. Takes the module name/id as its only parameter. 
+This is also internally used by RunWhen to check for the availablity of the module.
+</code></pre>
+
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.mod(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>).foo(); <span class="pl-c">// Calling the method foo() from module "Mod.mod3"</span></pre></div>
+
+<h2>
+<a id="squirrel-enjoy" class="anchor" href="#squirrel-enjoy" aria-hidden="true"><span class="octicon octicon-link"></span></a><img class="emoji" title=":squirrel:" alt=":squirrel:" src="https://assets-cdn.github.com/images/icons/emoji/shipit.png" height="20" width="20" align="absmiddle"> Enjoy!</h2>
+        </section>
+
+        <footer>
+          Famd is maintained by <a href="https://github.com/rafaelgandi">rafaelgandi</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
