@@ -1,8 +1,8 @@
 /* 
-	Faux AMD Library
+	Faux AMD Library (mobile edition)
 		- Inspired by the AMD architecture. Extends the native Navigator object.
 		- http://rafaelgandi.github.io/famd
-	LM: 05-15-2015
+	LM: 06-14-2015
 	Author: Rafael Gandionco [www.rafaelgandi.tk]
  */
 // Array.prototype.forEach() shiv //
@@ -34,6 +34,18 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 		if (!! console) {
 			console.warn(_msg);
 		}
+	}
+	
+	// See: http://www.nczonline.net/blog/2009/06/23/loading-javascript-without-blocking/
+	function loadScript(url, callback){
+		var script = document.createElement("script"),
+			callback = callback || function () {};
+		script.type = "text/javascript";  
+		script.onload = function(){
+			callback();
+		};
+		script.src = url + '?'+(new Date()).getTime(); // LM: 09-23-2014 [Now works on Android 4.1.2]
+		document.body.appendChild(script);
 	}
 	
 	function __collectLoadedScripts() {
@@ -73,7 +85,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 			_src = t(_src);
 			_callback = _callback || function () {};
 			if ($.inArray(_src, __loadedScripts) === -1) {
-				$.getScript(_src, _callback);
+				loadScript(_src, _callback);
 				__loadedScripts.push(_src);
 				return;
 			}
@@ -127,11 +139,11 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 				var run = _callback.call(self, $);
 				__modules[_moduleName] = (run instanceof Object) ? run : {};
 				$root.trigger(_moduleName);
-			});
+			}); 
 		}
 	};
 	
 	Navigator.prototype.mod = function (_moduleName) {
 		return __modules[_moduleName];
 	};	
-})(jQuery, self);
+})(Zepto, self); // Dependent on Zepto when on mobile edition
