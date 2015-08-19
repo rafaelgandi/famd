@@ -2,7 +2,7 @@
 	Faux AMD Library (mobile edition)
 		- Inspired by the AMD architecture. Extends the native Navigator object.
 		- http://rafaelgandi.github.io/famd
-	LM: 06-14-2015
+	LM: 08-19-2015
 	Author: Rafael Gandionco [www.rafaelgandi.tk]
  */
 // Array.prototype.forEach() shiv //
@@ -36,12 +36,25 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 		}
 	}
 	
+	function __isEmptyObject(obj) {
+		// See: http://stackoverflow.com/a/2673229
+		for (var prop in obj) {
+			if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	// See: http://www.nczonline.net/blog/2009/06/23/loading-javascript-without-blocking/
 	function loadScript(url, callback){
 		var script = document.createElement("script"),
 			callback = callback || function () {};
 		script.type = "text/javascript";  
 		script.onload = function(){
+			if (console) {
+				console.log('FAMD: '+url+' has loaded.');
+			}
 			callback();
 		};
 		script.src = url + '?'+(new Date()).getTime(); // LM: 09-23-2014 [Now works on Android 4.1.2]
@@ -94,6 +107,23 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 		return this;
 	};
 	
+	Navigator.prototype.then = function (_moduleName, _callback) {
+		_callback = _callback || function () {};
+		$(function () {
+			var mod = navigator.mod(_moduleName);
+			// If the module was loaded using a <script> tag, then run right away. //
+			if (mod && !__isEmptyObject(mod)) { 
+				_callback.call(self, mod);
+				return this;
+			}
+			// When the module was loaded using require() //
+			$root.on(_moduleName, function (e) {
+				_callback.call(self, navigator.mod(_moduleName));
+			});
+		});
+		return this;
+	};
+	
 	Navigator.prototype.define = function (_moduleName, _dependencies, _callback) {
 		var req = [];
 		_moduleName = _moduleName.replace(NON_MODULE_INDICATOR, '');
@@ -129,7 +159,7 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 				$(function () {
 					var run = _callback.call(self, $); // See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
 					__modules[_moduleName] = (run instanceof Object) ? run : {};
-					$root.trigger(_moduleName);
+					$root.trigger(_moduleName, [__modules[_moduleName]]);
 				});
 			});
 		}
@@ -138,12 +168,16 @@ var runwhen=function(self){var cachedChecks={},TIMEOUT=800,check=function(_check
 			$(function () {
 				var run = _callback.call(self, $);
 				__modules[_moduleName] = (run instanceof Object) ? run : {};
-				$root.trigger(_moduleName);
+				$root.trigger(_moduleName, __modules[_moduleName]);
 			}); 
 		}
 	};
 	
-	Navigator.prototype.mod = function (_moduleName) {
+	Navigator.prototype.mod = function (_moduleName, _callback) {
+		if (_callback) {
+			_callback = _callback || function () {};
+			navigator.then(_moduleName, _callback);
+		}
 		return __modules[_moduleName];
-	};	
+	};		
 })(Zepto, self); // Dependent on Zepto when on mobile edition

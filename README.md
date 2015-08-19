@@ -112,10 +112,17 @@ navigator.define('Mod.mod4', [
 
 ### navigator.mod
 	Method used to get the methods/properties of a module. Takes the module name/id as its only parameter. 
-	This is also internally used by RunWhen to check for the availablity of the module.
+	This is also internally used by RunWhen to check for the availablity of the module. Also takes a 
+	second parameter as a callback. This callback is ran when the module spacified on the first parameter 
+	has loaded including all its dependencies.
 
 ```JavaScript
 navigator.mod('Mod.mod3').foo(); // Calling the method foo() from module "Mod.mod3"
+
+// Wait and make sure all 'Mod.mod5' has loaded including its dependencies
+navigator.mod('Mod.mod5', function (mod5) {
+	alert(mod5.hello());
+});
 ```	
 
 ## :squirrel: Enjoy!
