@@ -57,21 +57,21 @@ This is usually called above any famd module definition. This loads a script onl
 "require_once". Internally uses jQuery's getScript() method.    
 </code></pre>
 
-<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);</pre></div>
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);</pre></div>
 
 <h4>
 <a id="navigatorrequire-can-also-be-chained" class="anchor" href="#navigatorrequire-can-also-be-chained" aria-hidden="true"><span class="octicon octicon-link"></span></a>navigator.require can also be chained.</h4>
 
 <div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>
-.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>)
-.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>)
-.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>)
-.require(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>)
-.require(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);</pre></div>
+.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>)
+.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>)
+.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>)
+.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>)
+.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);</pre></div>
 
 <h3>
 <a id="navigatordefine" class="anchor" href="#navigatordefine" aria-hidden="true"><span class="octicon octicon-link"></span></a>navigator.define</h3>
@@ -85,25 +85,25 @@ return the module object.
 <h4>
 <a id="normal-defining-of-a-module" class="anchor" href="#normal-defining-of-a-module" aria-hidden="true"><span class="octicon octicon-link"></span></a>Normal defining of a module</h4>
 
-<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.define(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>, [
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">define</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>, [
     <span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, 
     <span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>,
     <span class="pl-s"><span class="pl-pds">'</span>@$.fn.highlightFade<span class="pl-pds">'</span></span>   
 ], <span class="pl-k">function</span> (<span class="pl-smi">$</span>, <span class="pl-smi">undefined</span>) {
-    <span class="pl-c1">alert</span>(<span class="pl-k">typeof</span> $.fn.highlightFade);   
-    <span class="pl-c1">alert</span>(<span class="pl-c1">navigator</span>.mod(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>).foo()); 
+    <span class="pl-c1">alert</span>(<span class="pl-k">typeof</span> $.<span class="pl-c1">fn</span>.<span class="pl-c1">highlightFade</span>);   
+    <span class="pl-c1">alert</span>(<span class="pl-c1">navigator</span>.<span class="pl-c1">mod</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>).<span class="pl-c1">foo</span>()); 
     <span class="pl-k">var</span> mod3 <span class="pl-k">=</span> {
-        <span class="pl-en">foo</span>: <span class="pl-k">function</span> () {
+        <span class="pl-en">foo</span><span class="pl-k">:</span> <span class="pl-k">function</span> () {
             <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>hello from mod 3<span class="pl-pds">'</span></span>;
         },
-        <span class="pl-en">mod2</span>: <span class="pl-k">function</span> () {
-            <span class="pl-k">return</span> <span class="pl-c1">navigator</span>.mod(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>).foo();
+        <span class="pl-en">mod2</span><span class="pl-k">:</span> <span class="pl-k">function</span> () {
+            <span class="pl-k">return</span> <span class="pl-c1">navigator</span>.<span class="pl-c1">mod</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>).<span class="pl-c1">foo</span>();
         }
     };  
-    <span class="pl-c1">alert</span>(mod3.mod2());
+    <span class="pl-c1">alert</span>(mod3.<span class="pl-c1">mod2</span>());
     <span class="pl-c1">alert</span>($);
     <span class="pl-k">return</span> mod3;
 });</pre></div>
@@ -111,13 +111,13 @@ return the module object.
 <h4>
 <a id="defining-a-module-with-one-dependency-2nd-parameter-can-be-a-string" class="anchor" href="#defining-a-module-with-one-dependency-2nd-parameter-can-be-a-string" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining a module with one dependency. 2nd parameter can be a string</h4>
 
-<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.define(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">$</span>, <span class="pl-smi">undefined</span>) {
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">define</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">$</span>, <span class="pl-smi">undefined</span>) {
 
     <span class="pl-k">var</span> Events <span class="pl-k">=</span> {};    
 
     <span class="pl-k">return</span> {
-        <span class="pl-en">foo</span>: <span class="pl-k">function</span> () {
+        <span class="pl-en">foo</span><span class="pl-k">:</span> <span class="pl-k">function</span> () {
             <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>hello from mod 2<span class="pl-pds">'</span></span>;
         }
     };
@@ -126,9 +126,9 @@ return the module object.
 <h4>
 <a id="defining-a-module-without-dependencies" class="anchor" href="#defining-a-module-without-dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining a module without dependencies</h4>
 
-<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.define(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> () {
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.<span class="pl-c1">define</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> () {
     <span class="pl-k">return</span> {
-        <span class="pl-en">foo</span>: <span class="pl-k">function</span> () {
+        <span class="pl-en">foo</span><span class="pl-k">:</span> <span class="pl-k">function</span> () {
             <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>hello from mod 1<span class="pl-pds">'</span></span>;
         }
     };
@@ -137,30 +137,37 @@ return the module object.
 <h4>
 <a id="defining-a-module-that-does-not-return-anything" class="anchor" href="#defining-a-module-that-does-not-return-anything" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining a module that does not return anything</h4>
 
-<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.require(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);
-<span class="pl-c1">navigator</span>.define(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod4<span class="pl-pds">'</span></span>, [
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod1.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod2.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>js/highlightFade.min.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>js/jquery.blockUI.pak.js<span class="pl-pds">'</span></span>);
+<span class="pl-c1">navigator</span>.<span class="pl-c1">define</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod4<span class="pl-pds">'</span></span>, [
     <span class="pl-s"><span class="pl-pds">'</span>Mod.mod1<span class="pl-pds">'</span></span>, 
     <span class="pl-s"><span class="pl-pds">'</span>Mod.mod2<span class="pl-pds">'</span></span>,
     <span class="pl-s"><span class="pl-pds">'</span>@jQuery.fn.highlightFade<span class="pl-pds">'</span></span>,
     <span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>,
     <span class="pl-s"><span class="pl-pds">'</span>@jQuery.fn.block<span class="pl-pds">'</span></span>  
 ], <span class="pl-k">function</span> (<span class="pl-smi">$</span>, <span class="pl-smi">undefined</span>) {
-    <span class="pl-c1">alert</span>(<span class="pl-k">typeof</span> $.fn.block);   
-    <span class="pl-c1">alert</span>(<span class="pl-c1">navigator</span>.mod(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>).foo());
+    <span class="pl-c1">alert</span>(<span class="pl-k">typeof</span> $.<span class="pl-c1">fn</span>.<span class="pl-c1">block</span>);   
+    <span class="pl-c1">alert</span>(<span class="pl-c1">navigator</span>.<span class="pl-c1">mod</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>).<span class="pl-c1">foo</span>());
 });</pre></div>
 
 <h3>
 <a id="navigatormod" class="anchor" href="#navigatormod" aria-hidden="true"><span class="octicon octicon-link"></span></a>navigator.mod</h3>
 
 <pre><code>Method used to get the methods/properties of a module. Takes the module name/id as its only parameter. 
-This is also internally used by RunWhen to check for the availablity of the module.
+This is also internally used by RunWhen to check for the availablity of the module. Also takes a 
+second parameter as a callback. This callback is ran when the module spacified on the first parameter 
+has loaded including all its dependencies.
 </code></pre>
 
-<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.mod(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>).foo(); <span class="pl-c">// Calling the method foo() from module "Mod.mod3"</span></pre></div>
+<div class="highlight highlight-JavaScript"><pre><span class="pl-c1">navigator</span>.<span class="pl-c1">mod</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod3<span class="pl-pds">'</span></span>).<span class="pl-c1">foo</span>(); <span class="pl-c">// Calling the method foo() from module "Mod.mod3"</span>
+
+<span class="pl-c">// Wait and make sure all 'Mod.mod5' has loaded including its dependencies</span>
+<span class="pl-c1">navigator</span>.<span class="pl-c1">mod</span>(<span class="pl-s"><span class="pl-pds">'</span>Mod.mod5<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">mod5</span>) {
+    <span class="pl-c1">alert</span>(mod5.<span class="pl-c1">hello</span>());
+});</pre></div>
 
 <h2>
 <a id="squirrel-enjoy" class="anchor" href="#squirrel-enjoy" aria-hidden="true"><span class="octicon octicon-link"></span></a><img class="emoji" title=":squirrel:" alt=":squirrel:" src="https://assets-cdn.github.com/images/icons/emoji/shipit.png" height="20" width="20" align="absmiddle"> Enjoy!</h2>
